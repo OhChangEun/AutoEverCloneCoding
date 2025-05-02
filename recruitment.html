@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <div class="header">
+        <div class="header-content">
+          <div class="logo">
+            <!-- <img src="./images/logo.png" alt="현대오토에버로고" /> -->
+            로고
+          </div>
+          <div class="menu-bar">
+            <ul class="nav-menu">
+              <li class="nav-item">Teams</li>
+              <li class="nav-item">People</li>
+              <li class="nav-item">Life</li>
+              <li class="nav-item">Hiring Process</li>
+              <li class="nav-item">FAQ</li>
+              <li class="nav-item apply-btn">Apply</li>
+              <li class="nav-item">로그인</li>
+              <li class="nav-item">한국어</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="modal hidden">
+      <div class="modal-content">
+        <p>
+          <a href="https://litt.ly/hyundai_autoever">
+            <img src="./images/recruiting_image.png" />
+          </a>
+        </p>
+        <div class="button-container">
+          <div class="close-btn">닫기</div>
+          <div class="close-today-btn">오늘 하루 닫기</div>
+        </div>
+      </div>
+    </div>
+    <script>
+      const closeBtn = document.querySelector(".close-btn");
+      const modal = document.querySelector(".modal-container");
+      closeBtn.addEventListener("click", () => {
+        modal.classList.add("hidden");
+      });
+    </script>
+  </body>
+</html>
