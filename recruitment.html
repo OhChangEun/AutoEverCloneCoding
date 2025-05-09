@@ -13,7 +13,7 @@
   </head>
   <body>
     <header>
-      <!-- 상단 헤더  -->
+      <!-- 상단 헤더 -->
       <div class="header">
         <div class="header-content">
           <img src="./images/logo.png" alt="현대오토에버로고" />
@@ -27,8 +27,8 @@
             <li class="nav-item">로그인</li>
             <li class="nav-item">
               <i class="fa-solid fa-globe"></i>
-              <span class="language">한국어</span>
-              <span class="chevron"></span>
+              <div class="language">한국어</div>
+              <div class="chevron"></div>
             </li>
           </ul>
         </div>
@@ -45,41 +45,115 @@
           />
           <!-- <div class="overlay">People</div> -->
           <div class="overlay"></div>
+          <!-- 채용 바로가기 버튼 -->
           <ul class="btn-container">
             <li class="recruitment-btn">신입 채용 바로가기</li>
             <li class="recruitment-btn">경력 채용 바로가기</li>
           </ul>
         </div>
       </div>
+      <!-- 오토에버 핵심 가치 화면 -->
       <div class="main-container">
-        <div class="main-title">
+        <div class="core-values-text">
           함께 만들어가는 내일을 위해, <br />
           우리는 공동의 가치를 공유합니다
         </div>
-        <div class="core-values">
+        <div class="core-values-container">
           <div class="core-value-items">
+            <img class="core-value-img" src="./images/idea.png" />
             <div class="core-values-title">Innovation</div>
             <p class="core-values-description">
-              산업의 빠른 전환 속에서 혁신적인 생각과 적극적인 추진력으로 변화를
-              리딩합니다. 현대오토에버와 함께 과감한 도전을 통해 여러분의 빛나는
-              아이디어를 펼쳐보세요!
+              <strong>
+                산업의 빠른 전환 속에서 혁신적인 생각과 <br />
+                적극적인 추진력으로 변화를 리딩합니다. <br />
+              </strong>
+              현대오토에버와 함께 과감한 도전을 통해 <br />
+              여러분의 빛나는 아이디어를 펼쳐보세요!
             </p>
           </div>
           <div class="core-value-items">
-            <div class="core-values-title">Innovation</div>
+            <img class="core-value-img" src="./images/thumb-up.png" />
+            <div class="core-values-title">Professionalism</div>
             <p class="core-values-description">
-              산업의 빠른 전환 속에서 혁신적인 생각과 적극적인 추진력으로 변화를
-              리딩합니다. 현대오토에버와 함께 과감한 도전을 통해 여러분의 빛나는
-              아이디어를 펼쳐보세요!
+              <strong>
+                각자의 분야에서 최고의 전문가로 <br />
+                성장할 수 있는 기회를 제공합니다.<br />
+              </strong>
+              체계화된 직무 교육, 열정 넘치는 동료들과 함께 <br />
+              SW Professional로의 여정을 시작하세요.
             </p>
           </div>
           <div class="core-value-items">
-            <div class="core-values-title">Innovation</div>
+            <img class="core-value-img" src="./images/setting.png" />
+            <div class="core-values-title">Customer Orientation</div>
             <p class="core-values-description">
-              산업의 빠른 전환 속에서 혁신적인 생각과 적극적인 추진력으로 변화를
-              리딩합니다. 현대오토에버와 함께 과감한 도전을 통해 여러분의 빛나는
-              아이디어를 펼쳐보세요!
+              <strong>
+                고객에게 최고의 서비스와 품질을 제공하고, <br />
+                한걸음 더 성장할 수 있는 방향을 제시합니다. <br />
+              </strong>
+              고객의 가치 실현이 곧 우리가 나아가는 방향입니다.
             </p>
+          </div>
+        </div>
+        <!-- 오토에버 소개 화면 -->
+        <section class="intro-section">
+          <div class="intro-text">
+            우리는 이렇게 미래 기술을 <br />
+            만들어가고 있어요
+          </div>
+          <div class="intro-wrapper">
+            <div class="intro-container">
+              <div class="intro-item">
+                <img src="./images/intro1.png" />
+                <h2>
+                  현대오토에버 임직원 10인 10색의 직무 자기소개서 미리보기
+                </h2>
+                <div>임직원 직무인터뷰</div>
+              </div>
+              <div class="intro-item">
+                <img src="./images/intro2.jpg" />
+                <h2>2024년 우수사원들이 생각하는 2025년 우리의 '청사'진진</h2>
+                <div>우수사원 인터뷰</div>
+              </div>
+            </div>
+            <div class="button">
+              <span class="chevron chevron-left"></span>
+              <span class="chevron chevron-right"></span>
+            </div>
+          </div>
+        </section>
+
+        <!-- 오토에버 SNS 소개 화면 -->
+        <div class="socials-text">
+          현대오토에버에 대한 <br />
+          더 많은 이야기를 만나보세요
+        </div>
+        <div class="socials-container">
+          <iframe
+            src="https://www.youtube.com/embed/0OUf8oFxa00"
+            title="오토에버 소개 유튜브 영상"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          >
+          </iframe>
+          <div class="socials">
+            <div class="socials-item">
+              <img class="socials-img" src="./images/home.png" />
+              <div class="socials-title"><a href="#">Homepage</a></div>
+            </div>
+            <div class="socials-item">
+              <img class="socials-img" src="./images/instagram.png" />
+              <div class="socials-title"><a href="#">Instagram</a></div>
+            </div>
+            <div class="socials-item">
+              <img class="socials-img" src="./images/blog.png" />
+              <div class="socials-title"><a href="#">Blog</a></div>
+            </div>
+            <div class="socials-item">
+              <img class="socials-img" src="./images/linked-in.png" />
+              <div class="socials-title"><a href="#">LinkedIn</a></div>
+            </div>
           </div>
         </div>
       </div>
