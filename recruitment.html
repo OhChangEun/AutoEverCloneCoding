@@ -105,20 +105,65 @@
             <div class="intro-container">
               <div class="intro-item">
                 <img src="./images/intro1.png" />
-                <h2>
+                <div class="intro-title">
                   현대오토에버 임직원 10인 10색의 직무 자기소개서 미리보기
-                </h2>
-                <div>임직원 직무인터뷰</div>
+                </div>
+                <div class="intro-desc">임직원 직무인터뷰</div>
               </div>
               <div class="intro-item">
                 <img src="./images/intro2.jpg" />
-                <h2>2024년 우수사원들이 생각하는 2025년 우리의 '청사'진진</h2>
-                <div>우수사원 인터뷰</div>
+                <div class="intro-title">
+                  2024년 우수사원들이 생각하는 2025년 우리의 '청사'진!
+                </div>
+                <div class="intro-desc">우수사원 인터뷰</div>
+              </div>
+              <div class="intro-item">
+                <img src="./images/intro3.png" />
+                <div class="intro-title">팀워크로 만든 가능성</div>
+                <div class="intro-desc">인프라아키텍처기술팀</div>
+              </div>
+              <div class="intro-item">
+                <img src="./images/intro4.png" />
+                <div class="intro-title">
+                  집, 공간 그 이상의 가치를 만드는 기술
+                </div>
+                <div class="intro-desc">스마트홈추진팀</div>
+              </div>
+              <div class="intro-item">
+                <img src="./images/intro5.png" />
+                <div class="intro-title">
+                  서로 치고받고...두 책임님 사이에 무슨 일이?
+                </div>
+                <div class="intro-desc">블루팀, 레드팀</div>
+              </div>
+              <div class="intro-item">
+                <img src="./images/intro6.png" />
+                <div class="intro-title">스마트팩토리 직무의 모든 것!</div>
+                <div class="intro-desc">스마트팩토리</div>
+              </div>
+              <div class="intro-item">
+                <img src="./images/intro7.jpg" />
+                <div class="intro-title">스마트팩토리 직무의 모든 것!</div>
+                <div class="intro-desc">스마트팩토리</div>
+              </div>
+              <div class="intro-item">
+                <img src="./images/intro8.jpg" />
+                <div class="intro-title">스마트팩토리 직무의 모든 것!</div>
+                <div class="intro-desc">스마트팩토리</div>
+              </div>
+              <div class="intro-item">
+                <img src="./images/intro9.png" />
+                <div class="intro-title">스마트팩토리 직무의 모든 것!</div>
+                <div class="intro-desc">스마트팩토리</div>
               </div>
             </div>
-            <div class="button">
-              <span class="chevron chevron-left"></span>
-              <span class="chevron chevron-right"></span>
+
+            <div class="pagination-container">
+              <div class="chevron chevron-left"></div>
+              <div class="pagination-current-page">
+                <span class="current-page">1</span> / 9
+              </div>
+              <div class="chevron chevron-right"></div>
             </div>
           </div>
         </section>
@@ -248,6 +293,38 @@
       const modal = document.querySelector(".modal-container");
       closeBtn.addEventListener("click", () => {
         modal.classList.add("hidden");
+      });
+
+      const slideContainer = document.querySelector(
+        ".intro-wrapper .intro-container"
+      );
+      const leftSlideBtn = document.querySelector(
+        ".pagination-container .chevron-left"
+      );
+      const rightSlideBtn = document.querySelector(
+        ".pagination-container .chevron-right"
+      );
+      let currentSlide = 1;
+      let currentOffset = 0;
+      const slideDistance = 50;
+
+      // 왼쪽 버튼 클릭 시
+      leftSlideBtn.addEventListener("click", () => {
+        if (currentSlide > 1) {
+          currentSlide--;
+          console.log(currentSlide);
+          currentOffset += slideDistance;
+          slideContainer.style.transform = `translateX(${currentOffset}%)`;
+        }
+      });
+      // 오른쪽 버튼 클릭 시
+      rightSlideBtn.addEventListener("click", () => {
+        if (currentSlide < 9) {
+          currentSlide++;
+          console.log(currentSlide);
+          currentOffset -= slideDistance;
+          slideContainer.style.transform = `translateX(${currentOffset}%)`;
+        }
       });
     </script>
   </body>
