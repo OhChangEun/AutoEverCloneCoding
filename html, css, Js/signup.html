@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <style>
+    .signup-container {
+      width: 100vw;
+      padding: 0px 24px;
+      margin-top: var(--header-height);
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 40px 0 80px;
+    }
+    .signup-container .signup-header {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .signup-header .signup-title {
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 1.6em;
+      color: rgba(0, 0, 0, 0.85);
+    }
+    .signup-header .is-exist-account {
+      display: flex;
+      gap: 12px;
+      padding: 8px 0;
+    }
+    .is-exist-account p {
+      font-weight: 400;
+      font-size: 13px;
+      color: rgba(0, 0, 0, 0.6);
+    }
+    .is-exist-account a {
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(0, 0, 0, 0.85);
+    }
+    .signup-header .signup-header-desc {
+      margin-top: 16px;
+      padding: 12px 12px 12px 24px;
+      border-radius: 4px;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      background-color: rgba(0, 0, 0, 0.02);
+    }
+    .signup-header .signup-header-desc li {
+      font-weight: 400;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.6);
+    }
+    .signup-input-container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .terms-container .select-all {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      cursor: pointer;
+    }
+    .terms-container #select-all-checkbox {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+    }
+    .terms-container hr {
+      margin-top: 16px;
+    }
+    .terms-container .sub-checkbox {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 8px 0;
+    }
+    .sub-checkbox .checkbox-item {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .sub-checkbox .terms {
+      width: 16px;
+      height: 16px;
+    }
+    .signup-submit-container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .submit-btn {
+      width: 100%;
+      height: 40px;
+      background-color: var(--main-logo-color);
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      font-weight: 500;
+      color: white;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .submit-btn:disabled {
+      pointer-events: none;
+      background-color: rgba(0, 0, 0, 0.06);
+      color: rgba(0, 0, 0, 0.25);
+    }
+  </style>
+  <body>
+    <header>
+      <!-- 상단 헤더 -->
+      <div class="header">
+        <div class="header-content">
+          <img src="./images/logo.png" alt="현대오토에버로고" />
+          <ul class="nav-menu">
+            <li class="nav-item">Teams</li>
+            <li class="nav-item">People</li>
+            <li class="nav-item">Life</li>
+            <li class="nav-item">Hiring Process</li>
+            <li class="nav-item">FAQ</li>
+            <li class="nav-item apply-btn">Apply</li>
+            <li><a class="nav-item" href="login.html">로그인</a></li>
+            <li class="nav-item">
+              <i class="fa-solid fa-globe"></i>
+              <div class="language">한국어</div>
+              <div class="chevron"></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <section>
+      <!-- 회원가입 -->
+      <div class="signup-container">
+        <form>
+          <div class="signup-header">
+            <h1 class="signup-title">지원 계정 만들기</h1>
+            <div class="is-exist-account">
+              <p>이전에 생성한 지원 계정이 있으신가요?</p>
+              <a href="#">로그인</a>
+            </div>
+            <ul class="signup-header-desc">
+              <li>
+                아래 내용은 향후 전형 진행에 있어 필수적인 항목이므로 잘 확인해
+                주세요.
+              </li>
+              <li>
+                인증 메일이 도착하지 않는다면 스팸 메일함을 확인해 주세요.
+              </li>
+            </ul>
+          </div>
+
+          <div class="signup-input-container">
+            <!-- 입력: 이메일 -->
+            <label class="form-field">
+              <span class="field-label">이메일 주소</span>
+              <div class="input-container">
+                <input
+                  type="text"
+                  class="email"
+                  name="email"
+                  maxlength="255"
+                  autofocus
+                />
+              </div>
+              <div class="error-text hidden">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <span>이메일을 알맞게 입력해 주세요.</span>
+              </div>
+            </label>
+
+            <!-- 입력: 비밀번호 -->
+            <label class="form-field">
+              <span class="field-label">비밀번호</span>
+              <div class="input-container">
+                <input
+                  class="password"
+                  name="password"
+                  type="password"
+                  maxlength="60"
+                />
+                <i class="password-icon fa-solid fa-eye"></i>
+              </div>
+              <div class="error-text password-error hidden">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <span>비밀번호를 입력해 주세요.</span>
+              </div>
+              <div class="password-requirements">
+                <ul class="requirements-list">
+                  <li class="requirement-item upper">
+                    <span>영어 대문자</span>
+                  </li>
+                  <li class="requirement-item lower">영어 소문자</li>
+                  <li class="requirement-item number">숫자</li>
+                  <li class="requirement-item special-char">특수문자</li>
+                  <li class="requirement-item at-least-8-char">8자 이상</li>
+                </ul>
+              </div>
+            </label>
+
+            <!-- 입력: 비밀번호 확인 -->
+            <label class="form-field">
+              <span class="field-label">비밀번호</span>
+              <div class="input-container">
+                <input
+                  class="password-check"
+                  name="password-check"
+                  type="password"
+                  maxlength="60"
+                />
+                <i class="password-icon fa-solid fa-eye"></i>
+              </div>
+              <div class="error-text hidden">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <span>비밀번호를 입력해 주세요.</span>
+              </div>
+              <div class="password-requirements">
+                <ul class="requirements-list">
+                  <li class="requirement-item confirm-password">
+                    비밀번호 일치
+                  </li>
+                </ul>
+              </div>
+            </label>
+
+            <!-- 입력: 이름 -->
+            <label class="form-field">
+              <span class="field-label">이름 (실명)</span>
+              <div class="input-container">
+                <input class="name" type="text" name="name" maxlength="255" />
+              </div>
+              <div class="error-text hidden">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <span>이름을 알맞게 입력해 주세요.</span>
+              </div>
+            </label>
+
+            <!-- 입력: 휴대폰 번호 -->
+            <label class="form-field">
+              <span class="field-label">사용 중인 휴대폰 번호</span>
+              <div class="input-container">
+                <input class="phone" type="text" name="phone" maxlength="255" />
+              </div>
+              <div class="error-text hidden">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <span>휴대폰 번호를 알맞게 입력해 주세요.</span>
+              </div>
+            </label>
+          </div>
+
+          <!-- 약관 동의 -->
+          <div class="terms-container">
+            <label class="select-all">
+              <input id="select-all-checkbox" type="checkbox" />
+              <span>전체 동의</span>
+            </label>
+            <hr />
+            <div class="sub-checkbox">
+              <label class="checkbox-item">
+                <input class="terms" type="checkbox" />
+                <span>[필수] 만 14세 이상 확인</span>
+              </label>
+
+              <label class="checkbox-item">
+                <input class="terms" type="checkbox" />
+                <span>[필수] 그리팅 이용약관 동의</span>
+              </label>
+
+              <label class="checkbox-item">
+                <input class="terms" type="checkbox" />
+                <span> [필수] 그리팅 개인정보처리방침 동의</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- 회원가입 제출 -->
+          <div class="signup-submit-container">
+            <!-- 제출 버튼 -->
+            <button class="submit-btn" type="submit" disabled>생성 완료</button>
+            <!-- 로그인 문제 -->
+            <div class="login-problem">
+              <i class="fa-solid fa-headphones"></i>
+              <a href="#">
+                <span>계정 만들기에 문제가 있나요?</span>
+              </a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+    <script>
+      // 회원가입 성공
+      const successLogin = document.querySelector(".submit-btn");
+      successLogin.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        // 사용자 입력
+        const email = document.querySelector(".email").value.trim();
+        const password = document.querySelector(".password").value.trim();
+        const name = document.querySelector(".name").value.trim();
+        const phone = document.querySelector(".phone").value.trim();
+
+        // 데이터 로컬 스토리지에 저장
+        const user = {
+          password: password,
+          name: name,
+          phone: phone,
+        };
+        window.localStorage.setItem(email, JSON.stringify(user));
+        alert("로그인 페이지로 이동합니다.");
+        window.location.href = "login.html";
+      });
+
+      // 로그인 페이지로 이동
+      const goToLogin = document.querySelector(".is-exist-account a");
+      goToLogin.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.location.href = "login.html";
+      });
+
+      // 비밀번호 문자열로 출력
+      document.querySelectorAll(".password-icon").forEach((icon) => {
+        icon.addEventListener("click", () => {
+          const input = icon.closest(".input-container").querySelector("input");
+          const isPassword = input.type === "password";
+          input.type = isPassword ? "text" : "password";
+
+          icon.classList.toggle("fa-eye");
+          icon.classList.toggle("fa-eye-slash");
+        });
+      });
+
+      // 모든 form이 유효한지 검사
+      const isFormValid = {
+        email: false,
+        name: false,
+        phone: false,
+        password: false,
+        confirmPassword: false,
+      };
+
+      // 이메일, 이름, 전화번호 정규식
+      const validationRules = {
+        email: (value) =>
+          /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value.trim()),
+        name: (value) => value.trim().length > 1,
+        phone: (value) => /^01[016789]-?\d{3,4}-?\d{4}$/.test(value.trim()),
+      };
+
+      // 이메일, 이름, 전화번호 유효성 검사
+      document.querySelectorAll(".input-container input").forEach((input) => {
+        input.addEventListener("input", () => {
+          const name = input.name; // name 요소
+          const value = input.value.trim(); // 입력값
+          const inputContainer = input.closest(".input-container"); // 가장 가까운 컨테이너
+          const errorText = input
+            .closest(".form-field")
+            .querySelector(".error-text");
+
+          // password 입력 필드는 검사에서 제외
+          if (name === "password" || name === "password-check") return;
+
+          const isValid = validationRules[name](value); // 유효성 검사
+
+          if (isValid) {
+            inputContainer.classList.remove("error-box");
+            errorText.classList.add("hidden");
+          } else {
+            inputContainer.classList.add("error-box");
+            errorText.classList.remove("hidden");
+          }
+
+          isFormValid[name] = isValid;
+          // console.log(isFormValid);
+          toggleSubmitButton();
+        });
+      });
+
+      // 비밀번호 유효성 검사
+      const passwordInput = document.querySelector(".password");
+      passwordInput.addEventListener("input", () => {
+        const password = passwordInput.value.trim();
+        const validations = [
+          { regex: /[A-Z]/, selector: ".upper", label: "영어 대문자" },
+          { regex: /[a-z]/, selector: ".lower", label: "영어 소문자" },
+          { regex: /\d/, selector: ".number", label: "숫자" },
+          { regex: /[^\w\s]/, selector: ".special-char", label: "특수 문자" },
+          {
+            regex: /^.{8,}$/, // 8자 이상
+            selector: ".at-least-8-char",
+            label: "8자 이상",
+          },
+        ];
+
+        // 모든 유효성 검사
+        let allValid = true; // 모든 유효성 검사가 맞는지 확인하는 변수
+
+        validations.forEach(({ regex, selector, label }) => {
+          const element = document.querySelector(selector);
+          const isValid = regex.test(password);
+
+          if (isValid) {
+            element.classList.remove("requirement-error");
+            element.classList.add("requirement-fulfilled");
+          } else {
+            element.classList.remove("requirement-fulfilled");
+            element.classList.add("requirement-error");
+          }
+
+          element.innerHTML = isValid
+            ? `<i class="fas fa-check"></i>${label}`
+            : `<i class="fas fa-times"></i><span class="label-text"> ${label}</span>`;
+
+          // 모든 유효성 검사가 제대로 됐는지 체크
+          if (!isValid) {
+            allValid = false;
+          }
+        });
+
+        // 비밀번호가 모든 조건을 만족하는지 확인
+        isFormValid.password = allValid;
+
+        checkPassword(); // 비밀번호 일치 여부 체크
+        // console.log(isFormValid);
+        toggleSubmitButton(); // 버튼 상태 갱신
+      });
+
+      // 비밀번호 일치 검사
+      const passwordCheckInput = document.querySelector(".password-check");
+      const confirmPassword = document.querySelector(".confirm-password");
+
+      function checkPassword(input) {
+        const firstInput = passwordInput.value.trim();
+        const secondInput = passwordCheckInput.value.trim();
+
+        // 비밀번호가 일치한다면
+        if (firstInput === secondInput) {
+          confirmPassword.classList.remove("requirement-error");
+          confirmPassword.classList.add("requirement-fulfilled");
+          isFormValid.confirmPassword = true;
+        } else {
+          confirmPassword.classList.remove("requirement-fulfilled");
+          confirmPassword.classList.add("requirement-error");
+          isFormValid.confirmPassword = false;
+        }
+        toggleSubmitButton(); // 버튼 상태 갱신
+      }
+
+      passwordInput.addEventListener("input", checkPassword);
+      passwordCheckInput.addEventListener("input", checkPassword);
+
+      // 버튼 활성화/비활성화 함수
+      function toggleSubmitButton() {
+        const submitButton = document.querySelector(".submit-btn");
+        // Object.values(): 객체에서 값들만 배열로 뽑아내는 함수
+        const allValid = Object.values(isFormValid).every((isValid) => isValid);
+
+        if (allValid) {
+          submitButton.disabled = false; // 모든 조건이 true일 때 버튼 활성화
+        } else {
+          submitButton.disabled = true; // 하나라도 false면 버튼 비활성화
+        }
+      }
+    </script>
+  </body>
+</html>

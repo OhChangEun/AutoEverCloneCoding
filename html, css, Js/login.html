@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <style>
+    .login-container {
+      width: 100%;
+      padding: 0px 24px;
+      margin-top: var(--header-height);
+    }
+    .login-container .login-title {
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 1.6em;
+      color: rgba(0, 0, 0, 0.85);
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      max-width: 440px;
+      margin: 0 auto;
+      padding: 40px 0 80px;
+    }
+    .btn-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .btn-container .login-btn {
+      border: none;
+      background-color: var(--main-logo-color);
+      color: white;
+    }
+    .btn-container .signup-btn {
+      border: 1px solid rgba(0, 0, 0, 0.18);
+      background-color: transparent;
+      color: rgba(0, 0, 0, 0.85);
+    }
+    .signup-btn:hover {
+      background-color: rgba(0, 0, 0, 0.06);
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+  <body>
+    <header>
+      <!-- 상단 헤더 -->
+      <div class="header">
+        <div class="header-content">
+          <img src="./images/logo.png" alt="현대오토에버로고" />
+          <ul class="nav-menu">
+            <li class="nav-item">Teams</li>
+            <li class="nav-item">People</li>
+            <li class="nav-item">Life</li>
+            <li class="nav-item">Hiring Process</li>
+            <li class="nav-item">FAQ</li>
+            <li class="nav-item apply-btn">Apply</li>
+            <li><a class="nav-item" href="login.html">로그인</a></li>
+            <li class="nav-item">
+              <i class="fa-solid fa-globe"></i>
+              <div class="language">한국어</div>
+              <div class="chevron"></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <section>
+      <!-- 로그인 -->
+      <div class="login-container">
+        <form>
+          <h1 class="login-title">이메일 로그인</h1>
+
+          <!-- 이메일 -->
+          <label class="form-field">
+            <span class="field-label">이메일 주소</span>
+            <div class="input-container">
+              <input
+                class="email"
+                type="text"
+                name="email"
+                maxlength="255"
+                autofocus
+              />
+            </div>
+            <div class="error-text hidden">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              <span class="empty-msg">이메일을 입력해 주세요.</span>
+              <span class="valid-msg">이메일을 알맞게 입력해 주세요.</span>
+            </div>
+          </label>
+
+          <!-- 비밀번호 -->
+          <label class="form-field">
+            <span class="field-label">비밀번호</span>
+            <div class="input-container">
+              <input class="password" type="password" maxlength="60" />
+              <i class="password-icon fa-solid fa-eye"></i>
+            </div>
+            <div class="error-text hidden">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              <span>비밀번호를 입력해 주세요.</span>
+            </div>
+            <a class="forgot-password" href="#">
+              <span>비밀번호를 잊으셨나요?</span>
+            </a>
+          </label>
+
+          <!-- 로그인/회원가입 버튼 -->
+          <div class="btn-container">
+            <button class="btn login-btn">로그인</button>
+            <button class="btn signup-btn">계정 만들기</button>
+          </div>
+
+          <!-- 로그인 문제 -->
+          <div class="login-problem">
+            <i class="fa-solid fa-headphones"></i>
+            <a href="#">
+              <span>로그인에 문제가 있나요?</span>
+            </a>
+          </div>
+        </form>
+
+        <script>
+          const loginBtn = document.querySelector(".btn-container .login-btn");
+          const signupBtn = document.querySelector(
+            ".btn-container .signup-btn"
+          );
+
+          // 이메일 유효성 검사
+          const loginInput = document.querySelector(".email");
+          const emptyMsg = document.querySelector(".empty-msg");
+          const validMsg = document.querySelector(".valid-msg");
+          const inputContainer = loginInput.closest(".input-container"); // 가장 가까운 컨테이너
+          const errorText = loginInput
+            .closest(".form-field")
+            .querySelector(".error-text");
+
+          const emailRex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+          loginInput.addEventListener("blur", () => {
+            const value = loginInput.value.trim();
+
+            // 이메일이 빈값인 경우
+            if (value === "") {
+              inputContainer.classList.add("error-box");
+              errorText.classList.remove("hidden");
+              emptyMsg.style.display = "inline";
+              validMsg.style.display = "none";
+            }
+          });
+
+          loginInput.addEventListener("input", () => {
+            const value = loginInput.value.trim();
+
+            if (!emailRex.test(value)) {
+              // 유효하지 않은 이메일 형식
+              inputContainer.classList.add("error-box");
+              errorText.classList.remove("hidden");
+              emptyMsg.style.display = "none";
+              validMsg.style.display = "inline";
+            } else {
+              // 올바른 이메일 형식
+              inputContainer.classList.remove("error-box");
+              errorText.classList.add("hidden");
+            }
+          });
+
+          // 로그인 버튼 클릭
+          loginBtn.addEventListener("click", (e) => {
+            e.preventDefault(); // form submit 막기
+
+            const inputEmail = document.querySelector(".email").value.trim();
+            const inputPassword = document
+              .querySelector(".password")
+              .value.trim();
+
+            const userData = window.localStorage.getItem(inputEmail);
+            if (userData) {
+              const user = JSON.parse(userData);
+              if (inputPassword === user.password) {
+                window.location.href = "recruitment.html"; // 로그인 성공
+              } else {
+                alert("비밀번호를 확인해주세요");
+              }
+            } else {
+              alert("이메일을 확인해주세요");
+            }
+          });
+
+          // 회원가입 창으로 이동
+          signupBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            window.location.href = "signup.html";
+          });
+
+          // 비밀번호 문자열로 출력
+          const pwdIcon = document.querySelector(".password-icon");
+          const pwdInput = document.querySelector(".input-container .password");
+          pwdIcon.addEventListener("click", () => {
+            if (pwdIcon.classList.contains("fa-eye")) {
+              pwdInput.type = "text";
+              pwdIcon.classList.remove("fa-eye");
+              pwdIcon.classList.add("fa-eye-slash");
+            } else {
+              pwdInput.type = "password";
+              pwdIcon.classList.remove("fa-eye-slash");
+              pwdIcon.classList.add("fa-eye");
+            }
+          });
+        </script>
+      </div>
+    </section>
+  </body>
+</html>
