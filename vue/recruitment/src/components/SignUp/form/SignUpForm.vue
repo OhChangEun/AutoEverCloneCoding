@@ -104,20 +104,17 @@
       <SignUpTerms />
 
       <!-- 회원가입 제출 -->
-      <div class="signup-submit-container">
-        <!-- 제출 버튼 -->
-        <button class="submit-btn" type="submit" :disabled="hasError">
-          생성 완료
-        </button>
-      </div>
+      <SignUpButton type="submit" :hasError="hasError" />
     </form>
   </div>
 </template>
 
 <script setup>
 import { ref, reactive, computed } from "vue";
+import axios from "axios";
 import BaseInput from "../base/BaseInput.vue";
 import SignUpTerms from "./SignUpTerms.vue";
+import SignUpButton from "./SignUpButton.vue";
 
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const phoneRegex = /^01[016789]-?\d{4}-?\d{4}$/;
@@ -137,17 +134,20 @@ const confirmPwdInput = ref("");
 
 const hasEmailError = computed(() => {
   const value = emailInput.value.trim();
-  return value !== "" && !emailRegex.test(value);
+  if (!value) return false; // 빈 값이면 에러 아님
+  return !emailRegex.test(value);
 });
 
 const hasNameError = computed(() => {
   const value = nameInput.value.trim();
-  return value !== "" && value.length < 2;
+  if (!value) return false; // 빈 값이면 에러 아님
+  return value.length < 2;
 });
 
 const hasPhoneError = computed(() => {
   const value = phoneInput.value.trim();
-  return value !== "" && !phoneRegex.test(value);
+  if (!value) return false; // 빈 값이면 에러 아님
+  return !phoneRegex.test(value);
 });
 
 const getPwdClass = (key) => {
@@ -185,6 +185,12 @@ const getConfirmPwdIcon = () => {
     hidden: confirmPwdInput.value.length < 1,
   };
 };
+const hasPwdSectionError = computed(() => {
+  return (
+    Object.keys(pwdValidation).some((key) => hasPwdError(key)) ||
+    hasConfirmPwdError()
+  );
+});
 
 const hasError = computed(() => {
   const email = emailInput.value.trim();
@@ -194,14 +200,41 @@ const hasError = computed(() => {
   // 빈값이 있으면 무조건 에러(true)
   if (!email || !name || !phone) return true;
 
-  return hasEmailError.value || hasNameError.value || hasPhoneError.value;
+  return (
+    hasEmailError.value ||
+    hasNameError.value ||
+    hasPhoneError.value ||
+    hasPwdSectionError.value
+  );
 });
+
+// 회원가입
+const handleSubmit = async () => {
+  try {
+    const payload = {
+      email: emailInput.value,
+      pwd: pwdInput.value,
+      name: nameInput.value,
+    };
+    const res = await axios.post(
+      "http://222.117.237.119:8111/auth/signup",
+      payload
+    );
+    if (res.data) {
+      alert("회원 가입 성공");
+    } else {
+      alert("회원 가입 실패");
+    }
+  } catch (err) {
+    console.error(err);
+    alert("가입 실패! 서버 오류 발생!");
+  }
+};
 </script>
 
 <style scoped>
 .signup-container {
   width: 100%;
-  /* margin-top: var(--header-height); */
 }
 form {
   display: flex;
@@ -249,42 +282,6 @@ form {
   border: 1px solid transparent;
   background-color: rgb(237, 252, 240);
   color: rgb(50, 158, 49);
-}
-.signup-submit-container {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-.submit-btn {
-  width: 100%;
-  height: 40px;
-  background-color: var(--main-logo-color);
-  border: none;
-  border-radius: 4px;
-  font-size: 16px;
-  font-weight: 500;
-  color: white;
-  transition: all 0.2s ease;
-  cursor: pointer;
-}
-.submit-btn:disabled {
-  pointer-events: none;
-  background-color: rgba(0, 0, 0, 0.06);
-  color: rgba(0, 0, 0, 0.25);
-}
-
-.btn {
-  width: 100%;
-  height: 40px;
-  padding: 0px 16px;
-  border-radius: 4px;
-  font-weight: 600;
-  font-size: 16px;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 .hidden {
   display: none;

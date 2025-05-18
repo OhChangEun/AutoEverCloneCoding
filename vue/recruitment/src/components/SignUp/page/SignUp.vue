@@ -21,52 +21,6 @@ const user = reactive({
   confirmPassword: "",
   name: "",
 });
-
-const isEmailValid = computed(() => {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(user.email);
-});
-const isPasswordValid = computed(() => {
-  return user.password.length > 0;
-});
-const isConfirmPassword = computed(() => {
-  return user.password === user.confirmPassword;
-});
-const isNameValid = computed(() => {
-  return user.name.length > 0;
-});
-
-const isFormValid = computed(() => {
-  return (
-    isEmailValid.value &&
-    isPasswordValid.value &&
-    isConfirmPassword.value &&
-    isNameValid.value
-  );
-});
-
-// 회원가입
-const handleSubmit = async () => {
-  try {
-    const payload = {
-      email: user.email,
-      pwd: user.password,
-      name: user.name,
-    };
-    const res = await axios.post(
-      "http://222.117.237.119:8111/auth/signup",
-      payload
-    );
-    if (res.data) {
-      alert("회원 가입 성공");
-    } else {
-      alert("회원 가입 실패");
-    }
-  } catch (err) {
-    console.error(err);
-    alert("가입 실패! 서버 오류 발생!");
-  }
-};
 </script>
 
 <style scoped>
