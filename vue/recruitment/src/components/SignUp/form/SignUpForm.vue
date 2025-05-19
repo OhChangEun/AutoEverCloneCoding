@@ -15,6 +15,14 @@
           errorText="이메일 주소를 알맞게 입력해주세요."
           :isPassword="false"
         />
+        <button
+          type="button"
+          @click="validateEmail"
+          class="email-check-button"
+          :disabled="hasEmailError"
+        >
+          중복 확인
+        </button>
         <!-- 비밀번호 -->
         <div class="password-container">
           <BaseInput
@@ -112,7 +120,7 @@
 <script setup>
 import { ref, reactive, computed } from "vue";
 import axios from "axios";
-import BaseInput from "../base/BaseInput.vue";
+import BaseInput from "../../base/BaseInput.vue";
 import SignUpTerms from "./SignUpTerms.vue";
 import SignUpButton from "./SignUpButton.vue";
 
@@ -202,19 +210,22 @@ const hasError = computed(() => {
 
   return (
     hasEmailError.value ||
+    isEmailValid.value ||
     hasNameError.value ||
     hasPhoneError.value ||
     hasPwdSectionError.value
   );
 });
 
+const isEmailValid = ref(true);
 // 회원가입
 const handleSubmit = async () => {
   try {
+    if (!isEmailValid) return;
     const payload = {
-      email: emailInput.value,
-      pwd: pwdInput.value,
-      name: nameInput.value,
+      email: emailInput.value.trim(),
+      pwd: pwdInput.value.trim(),
+      name: nameInput.value.trim(),
     };
     const res = await axios.post(
       "http://222.117.237.119:8111/auth/signup",
@@ -228,6 +239,20 @@ const handleSubmit = async () => {
   } catch (err) {
     console.error(err);
     alert("가입 실패! 서버 오류 발생!");
+  }
+};
+
+// 이메일 형식 및 중복 확인
+const validateEmail = async () => {
+  const res = await axios.get(
+    `http://222.117.237.119:8111/auth/exists/${emailInput.value.trim()}`
+  );
+  if (res.data) {
+    alert("사용 가능한 이메일입니다.");
+    isEmailValid.value = true;
+  } else {
+    alert("중복된 이메일입니다.");
+    isEmailValid.value = false;
   }
 };
 </script>
