@@ -1,9 +1,10 @@
 <template>
-  <SignUp />
+  <router-view />
+  <BaseModal />
 </template>
 
 <script setup>
-import SignUp from "./components/SignUp/page/SignUp.vue";
+import BaseModal from "./base/BaseModal.vue";
 </script>
 
 <style>
@@ -13,6 +14,11 @@ import SignUp from "./components/SignUp/page/SignUp.vue";
   --background-color: #fafafa;
   --footer-color: #e9f1fe;
   --header-height: 72px;
+}
+html,
+body,
+#app {
+  height: 100%;
 }
 * {
   margin: 0;

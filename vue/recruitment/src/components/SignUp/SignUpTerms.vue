@@ -1,9 +1,9 @@
 <template>
   <!-- 약관 동의 -->
   <div class="terms-container">
-    <label class="select-all">
+    <label class="flex gap-2 items-center cursor-pointer">
       <input
-        class="select-all-checkbox"
+        class="w-5 h-5 rounded-full"
         type="checkbox"
         v-model="selectAll"
         @change="toggleAll"
@@ -11,12 +11,16 @@
       <span>전체 동의</span>
     </label>
 
-    <hr />
+    <hr class="mt-4" />
 
-    <div class="sub-checkbox">
-      <label class="checkbox-item" v-for="(term, index) in terms" :key="index">
+    <div class="flex flex-col gap-3 py-2">
+      <label
+        class="flex gap-2 items-center text-sm cursor-pointer"
+        v-for="(term, index) in terms"
+        :key="index"
+      >
         <input
-          class="terms"
+          class="w-4 h-4 cursor-pointer"
           type="checkbox"
           v-model="term.checked"
           @change="CheckIfAllSelected"
@@ -46,41 +50,3 @@ const CheckIfAllSelected = () => {
   selectAll.value = terms.value.every((term) => term.checked);
 };
 </script>
-
-<style scoped>
-.terms-container .select-all {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  cursor: pointer;
-}
-.terms-container .select-all-checkbox {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-}
-.terms-container hr {
-  margin-top: 16px;
-}
-.terms-container .sub-checkbox {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 8px 0;
-}
-.sub-checkbox .checkbox-item {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  font-size: 14px;
-  cursor: pointer;
-}
-.sub-checkbox .terms {
-  width: 16px;
-  height: 16px;
-}
-/* 체크박스에 마우스 커서 손가락 모양 */
-.terms-container input[type="checkbox"] {
-  cursor: pointer;
-}
-</style>
